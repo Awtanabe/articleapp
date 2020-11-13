@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'New Article', new_article_path %>
-
+<h3>カテゴリー一覧</h3>
 <div class="continer">
   <div class="left">
     <ul>
       <%@categories.each do |category|%>
-        <li><%=link_to "#{category.name}: #{category.articles.count}", "/category/#{category.id}"%></li>
+        <li><%=link_to "#{category.name}: #{category.articles.count}", "/categories/#{category.id}"%></li>
         <ul>
           <%category.child_categories.each do |cc|%>
           <li><%=cc.name %></li>
@@ -17,6 +16,8 @@
   </div>
   <div class="right">
   <h1>Articles</h1>
+
+  <%= link_to '記事を作成', new_article_path %>
 
 <table>
   <thead>
@@ -37,7 +38,7 @@
         <td><%= article.title %></td>
         <td><%= article.content %></td>
         <td><%= article.user_id %></td>
-        <%= article.category.name %>
+        <td><%= article.category.name %></td>
         <td><%= link_to 'Show', article %></td>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
         <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>

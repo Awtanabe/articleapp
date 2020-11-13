@@ -5,5 +5,16 @@
   <%= @category.name %>
 </p>
 
+<p>
+  <h3>記事一覧</h3>
+
+  <% @category.articles.each do |article|%>
+   <strong>記事タイトル: </strong>
+    <%= article.title %>
+    <br>
+    <br>
+  <%end%>
+</p>
+
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
