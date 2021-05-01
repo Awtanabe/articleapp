@@ -28,6 +28,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
 
+
     respond_to do |format|
       if @article.save
         format.html { redirect_to articles_path, notice: 'Article was successfully created.' }
@@ -71,6 +72,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:name, :title, :content, :category_id).merge(user_id: current_user.id)
+      params.require(:article).permit(:name, :title, :content, category_ids: []).merge(user_id: current_user.id)
     end
 end
